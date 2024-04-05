@@ -7,7 +7,7 @@ import "isomorphic-fetch";
 
 import { HttpResponse, http } from "msw";
 import { setupServer } from "msw/node";
-import UserList from "../components/UserList";
+import UserList from "../src/components/UserList";
 
 const userResponse = http.get(
   "https://jsonplaceholder.typicode.com/users",
