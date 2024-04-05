@@ -9,27 +9,28 @@ const TodoList = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [hasError, setHasError] = useState(false);
 
-  useEffect(() => retrieveTodos(), []);
+  useEffect(() => {
+    const retrieveTodos = async () => {
+      const todoResponse = await fetch(todoUrl);
+      const userResponse = await fetch(userUrl);
 
-  const retrieveTodos = async () => {
-    const todoResponse = await fetch(todoUrl);
-    const userResponse = await fetch(userUrl);
+      if (todoResponse.status === 500) {
+        setHasError(true);
+        return;
+      }
 
-    if (todoResponse.status === 500) {
-      setHasError(true);
-      return;
-    }
+      const todos: Todo[] = await todoResponse.json();
+      const users: User[] = await userResponse.json();
 
-    const todos: Todo[] = await todoResponse.json();
-    const users: User[] = await userResponse.json();
+      todos.forEach((todo) => {
+        const user = users.find((user) => user.id === Number(todo.userId));
+        todo.user = user;
+      });
 
-    todos.forEach((todo) => {
-      const user = users.find((user) => user.id === Number(todo.userId));
-      todo.user = user;
-    });
-
-    setTodos(todos);
-  };
+      setTodos(todos);
+    };
+    retrieveTodos();
+  }, []);
 
   return (
     <div>
@@ -44,7 +45,7 @@ const TodoList = () => {
         </thead>
         <tbody>
           {todos.map((todo) => (
-            <tr key={todo.id}>
+            <tr key={todo.id} style={{ border: "2px solid red" }}>
               <td> {todo.user?.name}</td>
               <td>{todo.title}</td>
               <td>{todo.completed ? <span>&#10004;</span> : ""}</td>
