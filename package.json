@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@testing-library/react": "^14.2.2",
+    "axios": "^1.6.8",
     "fast-text-encoding": "^1.0.6",
     "isomorphic-fetch": "^3.0.0",
     "jest-environment-jsdom": "^29.7.0",

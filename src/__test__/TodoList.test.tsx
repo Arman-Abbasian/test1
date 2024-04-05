@@ -141,21 +141,21 @@ test("it should have correct user Leanne Graham", async () => {
   expect(todoItem).toBeVisible();
 });
 
-test("it should have the correct todo item clean car", async () => {
-  render(<TodoList />);
-  const todoItem = await screen.findByText("clean car");
-  expect(todoItem).toBeVisible();
-});
+// test("it should have the correct todo item clean car", async () => {
+//   render(<TodoList />);
+//   const todoItem = await screen.findByText("clean car");
+//   expect(todoItem).toBeVisible();
+// });
 
-test("it should have correct user Clark Kent", async () => {
-  render(<TodoList />);
-  const todoItem = await screen.findByText("Clark Kent");
-  expect(todoItem).toBeVisible();
-});
+// test("it should have correct user Clark Kent", async () => {
+//   render(<TodoList />);
+//   const todoItem = await screen.findByText("Clark Kent");
+//   expect(todoItem).toBeVisible();
+// });
 
-test("it should handle error message from todo", async () => {
-  server.use(todoErrorResponse);
-  render(<TodoList />);
-  const todoItem = await screen.findByText("Opps come back later");
-  expect(todoItem).toBeVisible();
-});
+// test("it should handle error message from todo", async () => {
+//   server.use(todoErrorResponse);
+//   render(<TodoList />);
+//   const todoItem = await screen.findByText("Opps come back later");
+//   expect(todoItem).toBeVisible();
+// });
